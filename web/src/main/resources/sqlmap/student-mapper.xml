@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="student.mapper">
+	<select id="detail" resultType="student.StudentVO">
+		SELECT * FROM student WHERE id=#{id }
+	</select>
+
+	<select id="list" resultType="student.StudentVO">
+		SELECT ROWNUM no, c.* FROM (SELECT * FROM student ORDER BY name) c
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO student(name, stuID, phone)
+		VALUES (#{name }, #{stuID }, #{phone }) 
+	</insert>
+	
+	<update id="update">
+		UPDATE student SET stuID=#{stuID }, phone=#{phone }
+		WHERE id=#{id }
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM student WHERE id=#{id }
+	</delete>
+</mapper>
